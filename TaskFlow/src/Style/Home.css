@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --primary: #4f46e5;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --bg-color: #f8fafc;
+  --glass-card: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.8);
+  --chip-bg: #f1f5f9;
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+}
+
+body {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  overflow-x: hidden;
+}
+
+.homePage {
+  flex: 1;
+  padding-top: 110px; 
+  padding-bottom: 0;
+  background: 
+    radial-gradient(at 0% 0%, hsla(253,16%,70%,0.2) 0, transparent 50%), 
+    radial-gradient(at 50% 0%, hsla(225,39%,60%,0.2) 0, transparent 50%), 
+    radial-gradient(at 100% 0%, hsla(339,49%,60%,0.2) 0, transparent 50%);
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homeContainer {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 1.5rem 4rem 1.5rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto 3rem auto;
+  gap: 0.75rem;
+  max-width: 900px;
+  width: 100%;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.homeHeaderText {
+  font-size: 4.25rem;
+  font-weight: 800;
+  margin: 0;
+  background: linear-gradient(135deg, #0f172a 0%, #4f46e5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  width: 100%;
+  padding-bottom: 0.1em;
+}
+
+.homeSubHeaderText {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 650px;
+}
+
+.taskDisplayContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
+  animation: fadeInUp 0.8s ease-out 0.2s backwards;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
+.taskContainer {
+  background: var(--glass-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 1.5rem;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.taskContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--primary), #818cf8);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.taskContainer:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+  background: #ffffff;
+}
+
+.taskContainer:hover::before {
+  opacity: 1;
+}
+
+.taskTitleDisplay {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0 0 0.25rem 0;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.taskContainer p {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background-color: var(--chip-bg);
+  padding: 0.4rem 0.85rem;
+  border-radius: 50px;
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.taskContainer:hover p {
+  border-color: #e2e8f0;
+  background-color: #f8fafc;
+  color: var(--text-main);
+}
+
+.noTaskText {
+  text-align: center;
+  grid-column: 1 / -1;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin: 1rem auto;
+  padding: 2.5rem;
+  background: rgba(255,255,255,0.4);
+  border-radius: 20px;
+  border: 2px dashed #cbd5e1;
+  width: 100%;
+  max-width: 400px;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .homeHeaderText { font-size: 2.75rem; }
+  .taskDisplayContainer { grid-template-columns: 1fr; }
+  .homeContainer, .taskDisplayContainer { padding: 0 1rem; }
+  .homePage { padding-top: 100px; }
+}
