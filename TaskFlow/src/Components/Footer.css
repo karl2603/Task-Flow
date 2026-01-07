@@ -138,13 +138,13 @@
     flex-direction: column;
     gap: 3rem;
   }
-  
+
   .footerLinks {
     width: 100%;
     justify-content: space-between;
     gap: 2rem;
   }
-  
+
   .footerBottom {
     flex-direction: column;
     text-align: center;

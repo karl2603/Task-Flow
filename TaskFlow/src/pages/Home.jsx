@@ -20,7 +20,7 @@ function Home({ tasks }) {
         <div className="taskDisplayContainer">
           {tasks.length === 0 ? (
             <>
-            <h2 className="noTaskText">No tasks added yet</h2>
+              <h2 className="noTaskText">No tasks added yet</h2>
             </>
           ) : (
             tasks.map((item) => (

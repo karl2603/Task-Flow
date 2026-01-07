@@ -2,10 +2,11 @@ import React from 'react'
 import { useState } from 'react';
 import Navbar from "../Components/Navbar.jsx";
 import Footer from '../Components/Footer.jsx';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import "../Style/TaskDetails.css"
 
 function TaskDetails({ tasks, setTasks }) {
+  const navigate = useNavigate();
   const { id } = useParams();
   const task = tasks.find((item) => item.id.toString() === id)
   const [showPopUp, setShowPopUp] = useState(false)
@@ -19,11 +20,18 @@ function TaskDetails({ tasks, setTasks }) {
     }))
   }
 
-  function handleSave(){
-    const updatedTasks = tasks.map((item)=>(item.id === editedTask.id ? editedTask : item))
+  function handleSave() {
+    const updatedTasks = tasks.map((item) => (item.id === editedTask.id ? editedTask : item))
     setTasks(updatedTasks)
     setShowPopUp(false)
   }
+
+  function handleCompleted() {
+    const updatedTasks = tasks.filter((item) => (item.id != editedTask.id))
+    setTasks(updatedTasks)
+    navigate("/");
+  }
+
   if (!task) {
     return (
       <>
@@ -47,7 +55,7 @@ function TaskDetails({ tasks, setTasks }) {
         <p className='taskDetailStatus'>{task.status}</p>
         <p className='taskDetailDesc'>{task.description}</p>
         <button className='editBtn' onClick={() => { setShowPopUp(true) }}>Edit</button>
-        <button className='completedBtn'>Completed</button>
+        <button className='completedBtn' onClick={handleCompleted}>Completed</button>
       </div>
       <Footer />
       {
@@ -96,7 +104,7 @@ function TaskDetails({ tasks, setTasks }) {
                 onChange={handleEdit}
               />
               <div className='editBtnDiv'>
-                <button className='saveBtn'onClick={handleSave}>Save</button>
+                <button className='saveBtn' onClick={handleSave}>Save</button>
                 <button className='cancelBtn' onClick={() => { setShowPopUp(false) }}>Cancel</button>
               </div>
             </div>
